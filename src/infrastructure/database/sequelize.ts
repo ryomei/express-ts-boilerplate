@@ -1,7 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
 import dotenv from 'dotenv'
 import path from 'path'
-
 dotenv.config()
 
 const database = process.env.DB_NAME || ''
