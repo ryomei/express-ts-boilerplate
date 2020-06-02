@@ -19,14 +19,14 @@ describe('integration: Login', () => {
   })
 
   it('should return a jwt token when valid credentials are provided', async () => {
-    const model = await factory.login.create({ loginName: 'test-user', password: 'test-password' })
+    const model = await factory.login.create({ loginName: 'test-user1', password: 'test-password' })
     const response = await request(app).post('/login').send({ username: model.loginName, password: 'test-password' })
     expect(response.status).toBe(200)
     expect(response.body).toHaveProperty('token')
   })
 
   it('should return status 401 when invalid credentials are provided', async () => {
-    const model = await factory.login.create({ loginName: 'test-user', password: 'test-password' })
+    const model = await factory.login.create({ loginName: 'test-user2', password: 'test-password' })
     const response = await request(app).post('/login').send({ username: model.loginName, password: 'wrong-password' })
     expect(response.status).toBe(401)
   })

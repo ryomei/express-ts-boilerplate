@@ -6,7 +6,7 @@ const buildLogin = async (buildOptions = {
   loginName: faker.internet.userName(),
   password: faker.internet.password()
 }) => {
-  const passwordHash = await bcrypt.hash(buildOptions.password, 8)
+  const passwordHash = await bcrypt.hash(buildOptions.password, 10)
   return Login.build({ loginName: buildOptions.loginName, passwordHash, password: buildOptions.password })
 }
 

@@ -6,6 +6,9 @@ describe('unit: Authentication application', () => {
   beforeAll(async () => {
     await syncDatabase()
   })
+  afterEach(() => {
+    if (global.gc) global.gc()
+  })
   it('should have a function named login', () => {
     expect(auth.login).toBeDefined()
   })
@@ -20,7 +23,7 @@ describe('unit: Authentication application', () => {
   it('should return empty token when invalid credentials are provided', async () => {
     const loginName = 'test-user'
     const password = 'test-password'
-    await factory.login.create({ loginName, password })
+    await factory.login.build({ loginName, password })
     const result = await auth.login(loginName, 'wrong-password')
     expect(result.token).toBeFalsy()
   })

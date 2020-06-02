@@ -6,7 +6,11 @@ import {
   Column,
   AllowNull,
   NotEmpty,
-  BeforeSave
+  BeforeCreate,
+  DataType,
+  BeforeSave,
+  Unique
+
 } from 'sequelize-typescript'
 import bcrypt from 'bcrypt'
 
@@ -29,6 +33,7 @@ export default class Login extends Model<Login> implements ILogin {
 
     @AllowNull(false)
     @NotEmpty
+    @Unique
     @Column
     public loginName!: string
 
@@ -36,6 +41,7 @@ export default class Login extends Model<Login> implements ILogin {
     @Column
     public passwordHash!: string
 
+    @Column(DataType.VIRTUAL)
     public password?: string
 
     @BeforeSave
